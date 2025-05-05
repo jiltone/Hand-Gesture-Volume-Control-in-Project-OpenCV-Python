@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import pyautogui
 
+x1 = y1 = x2 = y2 = 0
 webcam = cv2.VideoCapture(0)
 my_hands = mp.solutions.hands.Hands()
 drawing_utils = mp.solutions.drawing_utils
@@ -28,8 +29,13 @@ while True:
                 y = int(landmark.y * frame_height)
                 if id == 8:  # Index finger tip
                     cv2.circle(img=image, center=(x,y), radius=10, color=(0,255,0), thickness=3)
+                    x1 = x
+                    y1 = y 
                 if id == 4:  # Thumb tip
                     cv2.circle(img=image, center=(x,y), radius=10, color=(0,255,0), thickness=3)
+                    x2 = x
+                    y2 = y
+                cv2.line(image, (x1, y1), (x2, y2), (0, 255, 0), 5)
     
     cv2.imshow("Hand volume control using python", image)
     
