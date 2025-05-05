@@ -9,6 +9,7 @@ drawing_utils = mp.solutions.drawing_utils
 
 while True:
     _, image = webcam.read()
+    image = cv2.flip(image, 1)  # Flip the image horizontally for a mirror effect
     
     # Check if frame is read correctly
     if image is None:
